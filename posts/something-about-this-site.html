@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="../favicon.png" />
+		<meta name="viewport" content="width=device-width" />
+		<meta http-equiv="content-security-policy" content="">
+		<link href="../_app/immutable/assets/_layout.91c6aeca.css" rel="stylesheet">
+		<link href="../_app/immutable/assets/ArticleMeta.4424d49e.css" rel="stylesheet">
+		<link rel="modulepreload" href="../_app/immutable/entry/start.fb8ad3eb.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/index.40dd77fd.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/singletons.ebb47539.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/control.e7f5239e.js">
+		<link rel="modulepreload" href="../_app/immutable/entry/app.67fd51fd.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/preload-helper.41c905a7.js">
+		<link rel="modulepreload" href="../_app/immutable/entry/_layout.svelte.91f002ae.js">
+		<link rel="modulepreload" href="../_app/immutable/entry/_layout.ts.984db11e.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/_layout.da46b06b.js">
+		<link rel="modulepreload" href="../_app/immutable/entry/posts-_slug_-page.svelte.c9c998a4.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/ArticleMeta.c6a4013b.js">
+		<link rel="modulepreload" href="../_app/immutable/entry/posts-_slug_-page.ts.d1727603.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/_page.374ddc9b.js"><title>About this, #1 | nordin.work</title><!-- HEAD_svelte-17be3w9_START --><meta property="og:site_name" content="nordin.work"><meta property="og:title" content="About this, #1"><meta property="og:description" content="How is it built?"><!-- HEAD_svelte-17be3w9_END -->
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">
+
+
+<header><a href="/"><h1>🏠</h1></a>
+	<button class="svelte-10p5m52">🌙
+</button></header>
+
+<main>
+<h2 class="heading svelte-9r10v3 large" id="about-this-"><a href="#about-this-">About this, #1</a></h2>
+<p class="svelte-idic31"><span class="date svelte-idic31">Sun Apr 16 2023</span>
+</p>
+
+<p>I’m trying to <code>keep it simple stupid</code>, so here are some steps to get started and deploying to gh-pages.</p>
+<ol><li>install <a href="https://svelte.dev/" rel="nofollow">svelte</a></li></ol>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token function">npm</span> create svelte@latest myapp
+<span class="token builtin class-name">cd</span> myapp
+<span class="token function">npm</span> <span class="token function">install</span>
+<span class="token function">npm</span> run dev</code><!-- HTML_TAG_END --></pre>
+<ol start="2"><li>add a static preprocessor</li></ol>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token function">npm</span> i <span class="token parameter variable">-D</span> @sveltejs/adapter-static</code><!-- HTML_TAG_END --></pre>
+<p>and use it in <code>svelte.config.js</code>.
+3. add gh-pages and a deploy step</p>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token function">npm</span> i <span class="token parameter variable">-D</span> gh-pages</code><!-- HTML_TAG_END --></pre>
+<pre class="language-json"><!-- HTML_TAG_START --><code class="language-json"><span class="token property">"deploy"</span><span class="token operator">:</span> <span class="token string">"vite build &amp;&amp; touch build/.nojekyll &amp;&amp; gh-pages -d build -t true"</span><span class="token punctuation">,</span></code><!-- HTML_TAG_END --></pre>
+<ol start="4"><li>wohoo, check your [username].github.io, if you have configured your repo/Settings/Pages to be deployed from gh-pages branch everything should be deployed 🎉</li></ol></main>
+
+<footer class="svelte-1tf32is"><p>👋
+	</p>
+</footer>
+
+
+			
+			<script>
+				{
+					__sveltekit_17eaazd = {
+						env: {},
+						base: new URL("..", location).pathname.slice(0, -1),
+						element: document.currentScript.parentElement
+					};
+
+					const data = [null,null];
+
+					Promise.all([
+						import("../_app/immutable/entry/start.fb8ad3eb.js"),
+						import("../_app/immutable/entry/app.67fd51fd.js")
+					]).then(([kit, app]) => {
+						kit.start(app, __sveltekit_17eaazd.element, {
+							node_ids: [0, 3],
+							data,
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+	</body>
+</html>

@@ -19,7 +19,7 @@
 		<link rel="modulepreload" href="../_app/immutable/entry/posts-_slug_-page.svelte.c9c998a4.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/ArticleMeta.c6a4013b.js">
 		<link rel="modulepreload" href="../_app/immutable/entry/posts-_slug_-page.ts.d1727603.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/_page.374ddc9b.js"><title>Welcome to my blog! | nordin.work</title><!-- HEAD_svelte-17be3w9_START --><meta property="og:site_name" content="nordin.work"><meta property="og:title" content="Welcome to my blog!"><meta property="og:description" content="You got to start somewhere"><!-- HEAD_svelte-17be3w9_END -->
+		<link rel="modulepreload" href="../_app/immutable/chunks/_page.374ddc9b.js"><title>Custom Domains in GH-Pages | nordin.work</title><!-- HEAD_svelte-17be3w9_START --><meta property="og:site_name" content="nordin.work"><meta property="og:title" content="Custom Domains in GH-Pages"><meta property="og:description" content="So simple!"><!-- HEAD_svelte-17be3w9_END -->
 	</head>
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">
@@ -30,17 +30,17 @@
 </button></header>
 
 <main>
-<h2 class="heading svelte-9r10v3 large" id="welcome-to-my-blog"><a href="#welcome-to-my-blog">Welcome to my blog!</a></h2>
-<p class="svelte-idic31"><span class="date svelte-idic31">Sat Apr 15 2023</span>
+<h2 class="heading svelte-9r10v3 large" id="custom-domains-in-ghpages"><a href="#custom-domains-in-ghpages">Custom Domains in GH-Pages</a></h2>
+<p class="svelte-idic31"><span class="date svelte-idic31">Mon Apr 17 2023</span>
 </p>
 
-<p>Finaly its up. Its been on my mind for a long while to have a place to put my thoughts. </p>
-<p>It will probaby contain thoughts and tips about:</p>
-<ul><li>webdev</li>
-<li>Azure</li>
-<li>dotnet</li></ul>
-<pre class="language-js"><!-- HTML_TAG_START --><code class="language-js"><span class="token comment">// Something to test if syntax is working.</span>
-<span class="token keyword">const</span> something <span class="token operator">=</span> <span class="token boolean">false</span></code><!-- HTML_TAG_END --></pre></main>
+<p>Okay, you have a site on gh-pages. Now lets fix your custom domain. </p>
+<ol><li>buy a domain name</li>
+<li>create a CNAME record to point to the addresses specified in <a href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-an-apex-domain" rel="nofollow">github docs</a></li>
+<li>create a <code>CNAME</code> file in your <code>static</code> folder</li></ol>
+<pre class="language-text"><!-- HTML_TAG_START --><code class="language-text">nordin.work</code><!-- HTML_TAG_END --></pre>
+<ol start="4"><li>go to your repo’s settings/pages and specify your domain<ul><li>dont forget to enforce HTTPS 💪.</li></ul></li>
+<li>deploy, magic! 🪄</li></ol></main>
 
 <footer class="svelte-1tf32is"><p>👋
 	</p>
