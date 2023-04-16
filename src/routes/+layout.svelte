@@ -1,11 +1,13 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import DarkToggle from '$lib/components/DarkToggle.svelte';
-
+	import './prism-vsc-dark-plus.css';
 </script>
 
 <header>
-	<a href="/"><h1 class:small={$page.url.pathname !== '/'}>nordin.work</h1></a>
+	{#if $page.url.pathname !== '/'}
+	<a href="/"><h1>🏠</h1></a>
+	{/if}
 	<DarkToggle />
 </header>
 
@@ -22,7 +24,7 @@
 <style>
 	:global(:root) {
 		--spacing-unit: 4px;
-		--color-background: #e5e5e5;
+		--color-background: gray;
 		--color-text-primary: #212121;
 		--color-text-secondary: #5a5a5a;
 	}
@@ -31,6 +33,7 @@
 		--color-background: #000000;
 		--color-text-primary: #FFFFFF;
 		--color-text-secondary: #5a5a5a;
+		transition: background-color 1000ms linear;
 	}
 
 	:global(body) {
@@ -59,11 +62,9 @@
 		text-decoration: underline;
 	}
 
-	.small {
-		font-size: 1.6rem;
-	}
-
 	footer {
 		margin-top: calc(var(--spacing-unit) * 8);
 	}
+
+	
 </style>
