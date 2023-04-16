@@ -1,9 +1,12 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import DarkToggle from '$lib/components/DarkToggle.svelte';
+
 </script>
 
 <header>
 	<a href="/"><h1 class:small={$page.url.pathname !== '/'}>nordin.work</h1></a>
+	<DarkToggle />
 </header>
 
 <main>
@@ -24,6 +27,12 @@
 		--color-text-secondary: #5a5a5a;
 	}
 
+	:global(:root.dark) {
+		--color-background: #000000;
+		--color-text-primary: #FFFFFF;
+		--color-text-secondary: #5a5a5a;
+	}
+
 	:global(body) {
 		margin: 0 auto;
 		max-width: 75ch;
@@ -38,6 +47,7 @@
 		line-height: 1.51;
 		font-size: 18px;
 	}
+
 
 	:global(a, a:visited, a:active) {
 		text-decoration: none;
