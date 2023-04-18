@@ -1,0 +1,1 @@
+import{S as e,i as s,s as a}from"./index.013d6d90.js";const o={title:"",description:"",date:"2023-04-16",published:!1};class i extends e{constructor(t){super(),s(this,t,null,null,a,{})}}export{i as default,o as metadata};

@@ -20,7 +20,7 @@
 		<link rel="modulepreload" href="../_app/immutable/entry/posts-_slug_-page.svelte.986fdd64.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/ArticleMeta.a0387bfa.js">
 		<link rel="modulepreload" href="../_app/immutable/entry/posts-_slug_-page.ts.005a698a.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/_page.82af2377.js"><title>Custom Domains in GH-Pages | nordin.work</title><!-- HEAD_svelte-17be3w9_START --><meta property="og:site_name" content="nordin.work"><meta property="og:title" content="Custom Domains in GH-Pages"><meta property="og:description" content="So simple!"><!-- HEAD_svelte-17be3w9_END -->
+		<link rel="modulepreload" href="../_app/immutable/chunks/_page.82af2377.js"><title>Jsonbin.io and Asp.net Core | nordin.work</title><!-- HEAD_svelte-17be3w9_START --><meta property="og:site_name" content="nordin.work"><meta property="og:title" content="Jsonbin.io and Asp.net Core"><meta property="og:description" content="A simple way to mock your dependencies"><!-- HEAD_svelte-17be3w9_END -->
 	</head>
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">
@@ -32,17 +32,20 @@
 </button></header>
 
 <main>
-<h2 class="heading svelte-9r10v3 large" id="custom-domains-in-ghpages"><a href="#custom-domains-in-ghpages">Custom Domains in GH-Pages</a></h2>
-<p class="svelte-idic31"><span class="date svelte-idic31">Mon Apr 17 2023</span>
+<h2 class="heading svelte-9r10v3 large" id="jsonbinio-and-aspnet-core"><a href="#jsonbinio-and-aspnet-core">Jsonbin.io and Asp.net Core</a></h2>
+<p class="svelte-idic31"><span class="date svelte-idic31">Fri Apr 21 2023</span>
 </p>
 
-<p>Okay, you have a site on gh-pages. Now lets fix your custom domain. </p>
-<ol><li>buy a domain name</li>
-<li>create a CNAME record to point to the addresses specified in <a href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-an-apex-domain" rel="nofollow">github docs</a></li>
-<li>create a <code>CNAME</code> file in your <code>static</code> folder</li></ol>
-<pre class="language-text"><!-- HTML_TAG_START --><code class="language-text">nordin.work</code><!-- HTML_TAG_END --></pre>
-<ol start="4"><li>go to your repo’s settings/pages and specify your domain<ul><li>dont forget to enforce HTTPS 💪.</li></ul></li>
-<li>deploy, magic! 🪄</li></ol>
+<p>I’ve started using <a href="https://jsonbin.io" rel="nofollow">jsonbin</a> to mock some simple api calls. I’m impressed with the simplicity and the possibility to validate <code>bins</code> to a <code>JSON schema</code>. </p>
+<ol><li>Ask chatgpt to write a example <code>JSON</code> given the <code>schema</code> that I provide.</li>
+<li>Add a <code>bin</code> using their rest endpoint</li></ol>
+<pre class="language-curl"><!-- HTML_TAG_START --><code class="language-curl">curl -v  -H &quot;Content-Type: application/json&quot;   -H &quot;X-Master-key: &lt;YOUR_API_KEY&gt;&quot;   --request POST   --data &#39;&#123;&quot;sample&quot;: &quot;Hello World&quot;&#125;&#39;     https://api.jsonbin.io/v3/b</code><!-- HTML_TAG_END --></pre>
+<ol start="3"><li>In your ASP.net Core app add the http client and specify <code>X-Bin-Meta: false</code> to skip the extra wrapper.</li></ol>
+<pre class="language-c#"><!-- HTML_TAG_START --><code class="language-c#">.AddHttpClient&lt;IMyHttpClient, MyHttpClient&gt;(options =&gt;
+&#123;
+    options.BaseAddress = new Uri(&quot;https://api.jsonbin.io/&quot;);
+    options.DefaultRequestHeaders.Add(&quot;X-Bin-Meta&quot;, new [] &#123; &quot;false&quot; &#125;);
+&#125;);</code><!-- HTML_TAG_END --></pre>
 </main>
 
 
