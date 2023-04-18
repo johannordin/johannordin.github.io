@@ -12,9 +12,6 @@
 
 <PageHead title="Home" description="An awesome blog" />
 
-<p>
-	The blog of <a href="https://github.com/johannordin">me</a>
-</p>
 
 {#each data.posts as { slug, title, author, description, date }}
 	<Article>

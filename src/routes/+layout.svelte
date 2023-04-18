@@ -5,21 +5,14 @@
 </script>
 
 <header>
-	{#if $page.url.pathname !== '/'}
-	<a href="/"><h1>🏠</h1></a>
-	{/if}
+	<a href="/">🏠</a>
+	<a class="small" href="/about/">👨‍🦲</a>
 	<DarkToggle />
 </header>
 
 <main>
 	<slot />
 </main>
-
-<footer>
-	<p>
-		👋
-	</p>
-</footer>
 
 <style>
 	:global(:root) {
@@ -60,6 +53,22 @@
 
 	:global(a:hover) {
 		text-decoration: underline;
+	}
+
+	a.small {
+		font-size: 1.2rem;
+	}
+
+	:global(code:not(pre code)) {
+		background-color: var(--color-text-secondary);
+		color: var(--color-text-primary);
+		padding: var(--spacing-unit);
+		border-radius: var(--spacing-unit);
+	}
+
+	header {
+		font-size: 1.5rem;
+		margin-bottom: calc(var(--spacing-unit) * 8);
 	}
 
 	footer {
