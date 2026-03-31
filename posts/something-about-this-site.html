@@ -3,72 +3,61 @@
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" href="../favicon.png" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="description" content="a developer blog of johan nordin covering dotnet .net azure" />
-		<meta http-equiv="content-security-policy" content="">
-		<link href="../_app/immutable/assets/_layout.cfd3ee66.css" rel="stylesheet">
-		<link href="../_app/immutable/assets/ArticleMeta.4424d49e.css" rel="stylesheet">
-		<link rel="modulepreload" href="../_app/immutable/entry/start.dbde2ff0.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/index.013d6d90.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/paths.1b38571f.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/control.e7f5239e.js">
-		<link rel="modulepreload" href="../_app/immutable/entry/app.7c68880c.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/preload-helper.41c905a7.js">
-		<link rel="modulepreload" href="../_app/immutable/entry/_layout.svelte.7c6b2056.js">
-		<link rel="modulepreload" href="../_app/immutable/entry/_layout.ts.984db11e.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/_layout.da46b06b.js">
-		<link rel="modulepreload" href="../_app/immutable/entry/posts-_slug_-page.svelte.986fdd64.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/ArticleMeta.a0387bfa.js">
-		<link rel="modulepreload" href="../_app/immutable/entry/posts-_slug_-page.ts.005a698a.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/_page.82af2377.js"><title>About this, #1 | nordin.work</title><!-- HEAD_svelte-17be3w9_START --><meta property="og:site_name" content="nordin.work"><meta property="og:title" content="About this, #1"><meta property="og:description" content="How is it built?"><!-- HEAD_svelte-17be3w9_END -->
+		<link rel="alternate" type="application/rss+xml" title="nordin.work RSS Feed" href="/rss.xml" />
+		<script>
+			// Apply stored theme before first paint to avoid flash
+			(function() {
+				var stored = localStorage.getItem('color-scheme');
+				if (stored === 'light') document.documentElement.classList.add('light');
+				// dark is default — no class needed
+			})();
+		</script>
+		<link href="../_app/immutable/entry/start.C0-XyoJ_.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/CCjTlTcz.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/BE_AR5iD.js" rel="modulepreload">
+		<link href="../_app/immutable/entry/app.BkkKEK_d.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/CHncfsjL.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/D1hYfEew.js" rel="modulepreload">
+		<link href="../_app/immutable/nodes/0.CBxAE9u-.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/mpl0SzhF.js" rel="modulepreload">
+		<link href="../_app/immutable/nodes/4.Bb1XD1HQ.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/D5W0HYR7.js" rel="modulepreload">
+		<!--38sjwj--><meta name="description" content="A quick walkthrough of the stack — SvelteKit, adapter-static, and gh-pages deployment."/> <!--[0--><meta name="author" content="Johan Nordin"/><!--]--> <link rel="canonical" href="https://nordin.work/posts/something-about-this-site"/> <meta property="og:site_name" content="nordin.work"/> <meta property="og:type" content="article"/> <meta property="og:url" content="https://nordin.work/posts/something-about-this-site"/> <meta property="og:title" content="How this site is built, part 1: SvelteKit + GitHub Pages | nordin.work"/> <meta property="og:description" content="A quick walkthrough of the stack — SvelteKit, adapter-static, and gh-pages deployment."/> <meta property="og:image" content="https://nordin.work/favicon.png"/> <!--[0--><meta property="article:published_time" content="2023-04-16"/><!--]--> <!--[0--><meta property="article:author" content="Johan Nordin"/><!--]--> <meta name="twitter:card" content="summary"/> <meta name="twitter:title" content="How this site is built, part 1: SvelteKit + GitHub Pages | nordin.work"/> <meta name="twitter:description" content="A quick walkthrough of the stack — SvelteKit, adapter-static, and gh-pages deployment."/> <meta name="twitter:image" content="https://nordin.work/favicon.png"/><!----><title>How this site is built, part 1: SvelteKit + GitHub Pages | nordin.work</title>
+		<link href="../_app/immutable/assets/0.CxvuDu-h.css" rel="stylesheet">
+		<link href="../_app/immutable/assets/ArticleMeta.4lmyK-8_.css" rel="stylesheet">
+		<link href="../_app/immutable/assets/4.DYo7P96q.css" rel="stylesheet">
 	</head>
 	<body data-sveltekit-preload-data="hover">
-		<div style="display: contents">
-
-
-<header class="svelte-qfic7z"><a href="/">🏠</a>
-	<a class="small svelte-qfic7z" href="/about/">👨‍🦲</a>
-	<button class="svelte-10p5m52">🌙
-</button></header>
-
-<main>
-<h2 class="heading svelte-9r10v3 large" id="about-this-"><a href="#about-this-">About this, #1</a></h2>
-<p class="svelte-idic31"><span class="date svelte-idic31">Sun Apr 16 2023</span>
-</p>
-
-<p>I’m trying to <code>keep it simple stupid</code>, so here are some steps to get started and deploying to gh-pages.</p>
-<ol><li>install <a href="https://svelte.dev/" rel="nofollow">svelte</a></li></ol>
-<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token function">npm</span> create svelte@latest myapp
+		<div style="display: contents"><!--[--><!--[0--><!--[--><header class="svelte-12qhfyh"><nav class="svelte-12qhfyh"><a class="site-name svelte-12qhfyh" href="/">nordin.work</a> <div class="nav-links svelte-12qhfyh"><a href="/" class="svelte-12qhfyh active">Blog</a> <a href="/about" class="svelte-12qhfyh">About</a> <button aria-label="Switch to light mode" title="Switch to light mode" class="svelte-woggik"><!--[-1--><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg><!--]--></button><!----></div></nav></header> <main><!----><div class="page-transition svelte-12qhfyh"><!--[--><!----> <a class="back-link svelte-14u6r3i" href="/">← All posts</a> <article><header class="post-header svelte-14u6r3i"><!--[-1--><h1 class="post-title svelte-zkkrg4" id="how-this-site-is-built-part--sveltekit--github-pages">How this site is built, part 1: SvelteKit + GitHub Pages</h1><!--]--><!----> <p class="meta svelte-1ewd4uj"><!--[-1--><!--]--> <time datetime="2023-04-16">16 April 2023</time></p><!----></header> <div class="prose"><!--[--><p>I’m trying to keep it <code>simple stupid</code>, so here are the steps I took to get from zero to a deployed SvelteKit site on GitHub Pages.</p> <h2>1. Scaffold the project</h2> <pre class="language-bash"><!----><code class="language-bash"><span class="token function">npm</span> create svelte@latest myapp
 <span class="token builtin class-name">cd</span> myapp
 <span class="token function">npm</span> <span class="token function">install</span>
-<span class="token function">npm</span> run dev</code><!-- HTML_TAG_END --></pre>
-<ol start="2"><li>add a static preprocessor and use it in <code>svelte.config.js</code>.</li></ol>
-<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token function">npm</span> i <span class="token parameter variable">-D</span> @sveltejs/adapter-static</code><!-- HTML_TAG_END --></pre>
-<ol start="3"><li>add gh-pages and a deploy step</li></ol>
-<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token function">npm</span> i <span class="token parameter variable">-D</span> gh-pages</code><!-- HTML_TAG_END --></pre>
-<pre class="language-json"><!-- HTML_TAG_START --><code class="language-json"><span class="token property">"deploy"</span><span class="token operator">:</span> <span class="token string">"vite build &amp;&amp; touch build/.nojekyll &amp;&amp; gh-pages -d build -t true"</span><span class="token punctuation">,</span></code><!-- HTML_TAG_END --></pre>
-<ol start="4"><li>wohoo, check your <code>[username].github.io</code>, if you have configured your repo/Settings/Pages to be deployed from gh-pages branch everything should be deployed 🎉</li></ol>
-</main>
+<span class="token function">npm</span> run dev</code><!----></pre> <p>That gets you a working dev server. But the default <code>adapter-auto</code> won’t work for static hosting — you need <code>adapter-static</code>.</p> <h2>2. Switch to adapter-static</h2> <pre class="language-bash"><!----><code class="language-bash"><span class="token function">npm</span> i <span class="token parameter variable">-D</span> @sveltejs/adapter-static</code><!----></pre> <p>Then update <code>svelte.config.js</code>:</p> <pre class="language-js"><!----><code class="language-js"><span class="token keyword">import</span> adapter <span class="token keyword">from</span> <span class="token string">'@sveltejs/adapter-static'</span><span class="token punctuation">;</span>
 
+<span class="token keyword">const</span> config <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  <span class="token literal-property property">kit</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">adapter</span><span class="token operator">:</span> <span class="token function">adapter</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
 
+<span class="token keyword">export</span> <span class="token keyword">default</span> config<span class="token punctuation">;</span></code><!----></pre> <p>This tells SvelteKit to emit plain HTML/CSS/JS — no server required.</p> <h2>3. Add the deploy script</h2> <pre class="language-bash"><!----><code class="language-bash"><span class="token function">npm</span> i <span class="token parameter variable">-D</span> gh-pages</code><!----></pre> <p>In <code>package.json</code>:</p> <pre class="language-json"><!----><code class="language-json"><span class="token property">"deploy"</span><span class="token operator">:</span> <span class="token string">"vite build &amp;&amp; touch build/.nojekyll &amp;&amp; gh-pages -d build -t true"</span></code><!----></pre> <p>The <code>.nojekyll</code> file tells GitHub not to run Jekyll on your output. The <code>-t true</code> flag makes gh-pages include dotfiles — important if you use a custom domain CNAME file.</p> <h2>4. Configure GitHub Pages</h2> <p>In your repo’s <strong>Settings → Pages</strong>, set the source to the <code>gh-pages</code> branch. Run <code>npm run deploy</code>, and your site shows up at <code>https://{username}.github.io</code>.</p> <p>That’s the whole thing. In part 2 I’ll cover adding a blog with MDSvex.</p><!--]--></div></article><!--]--><!----></div><!----></main> <footer class="svelte-12qhfyh"><p class="svelte-12qhfyh">© 2026 Johan Nordin · Built with SvelteKit · <a href="https://github.com/johannordin" target="_blank" rel="noopener">GitHub</a></p></footer><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
 			
 			<script>
 				{
-					__sveltekit_defv1u = {
-						env: {},
-						base: new URL("..", location).pathname.slice(0, -1),
-						element: document.currentScript.parentElement
+					__sveltekit_1oiysuy = {
+						base: new URL("..", location).pathname.slice(0, -1)
 					};
 
-					const data = [null,null];
+					const element = document.currentScript.parentElement;
 
 					Promise.all([
-						import("../_app/immutable/entry/start.dbde2ff0.js"),
-						import("../_app/immutable/entry/app.7c68880c.js")
+						import("../_app/immutable/entry/start.C0-XyoJ_.js"),
+						import("../_app/immutable/entry/app.BkkKEK_d.js")
 					]).then(([kit, app]) => {
-						kit.start(app, __sveltekit_defv1u.element, {
+						kit.start(app, element, {
 							node_ids: [0, 4],
-							data,
+							data: [null,null],
 							form: null,
 							error: null
 						});

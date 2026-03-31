@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="../favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="a developer blog of johan nordin covering dotnet .net azure" />
+		<link rel="alternate" type="application/rss+xml" title="nordin.work RSS Feed" href="/rss.xml" />
+		<script>
+			// Apply stored theme before first paint to avoid flash
+			(function() {
+				var stored = localStorage.getItem('color-scheme');
+				if (stored === 'light') document.documentElement.classList.add('light');
+				// dark is default — no class needed
+			})();
+		</script>
+		<link href="../_app/immutable/entry/start.C0-XyoJ_.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/CCjTlTcz.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/BE_AR5iD.js" rel="modulepreload">
+		<link href="../_app/immutable/entry/app.BkkKEK_d.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/CHncfsjL.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/D1hYfEew.js" rel="modulepreload">
+		<link href="../_app/immutable/nodes/0.CBxAE9u-.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/mpl0SzhF.js" rel="modulepreload">
+		<link href="../_app/immutable/nodes/4.Bb1XD1HQ.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/D5W0HYR7.js" rel="modulepreload">
+		<!--38sjwj--><meta name="description" content="MDSvex turns Markdown files into Svelte components. Here's how I wired it up for this blog."/> <!--[0--><meta name="author" content="Johan Nordin"/><!--]--> <link rel="canonical" href="https://nordin.work/posts/sveltekit-mdsvex-setup"/> <meta property="og:site_name" content="nordin.work"/> <meta property="og:type" content="article"/> <meta property="og:url" content="https://nordin.work/posts/sveltekit-mdsvex-setup"/> <meta property="og:title" content="How this site is built, part 2: adding a blog with MDSvex | nordin.work"/> <meta property="og:description" content="MDSvex turns Markdown files into Svelte components. Here's how I wired it up for this blog."/> <meta property="og:image" content="https://nordin.work/favicon.png"/> <!--[0--><meta property="article:published_time" content="2023-05-01"/><!--]--> <!--[0--><meta property="article:author" content="Johan Nordin"/><!--]--> <meta name="twitter:card" content="summary"/> <meta name="twitter:title" content="How this site is built, part 2: adding a blog with MDSvex | nordin.work"/> <meta name="twitter:description" content="MDSvex turns Markdown files into Svelte components. Here's how I wired it up for this blog."/> <meta name="twitter:image" content="https://nordin.work/favicon.png"/><!----><title>How this site is built, part 2: adding a blog with MDSvex | nordin.work</title>
+		<link href="../_app/immutable/assets/0.CxvuDu-h.css" rel="stylesheet">
+		<link href="../_app/immutable/assets/ArticleMeta.4lmyK-8_.css" rel="stylesheet">
+		<link href="../_app/immutable/assets/4.DYo7P96q.css" rel="stylesheet">
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents"><!--[--><!--[0--><!--[--><header class="svelte-12qhfyh"><nav class="svelte-12qhfyh"><a class="site-name svelte-12qhfyh" href="/">nordin.work</a> <div class="nav-links svelte-12qhfyh"><a href="/" class="svelte-12qhfyh active">Blog</a> <a href="/about" class="svelte-12qhfyh">About</a> <button aria-label="Switch to light mode" title="Switch to light mode" class="svelte-woggik"><!--[-1--><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg><!--]--></button><!----></div></nav></header> <main><!----><div class="page-transition svelte-12qhfyh"><!--[--><!----> <a class="back-link svelte-14u6r3i" href="/">← All posts</a> <article><header class="post-header svelte-14u6r3i"><!--[-1--><h1 class="post-title svelte-zkkrg4" id="how-this-site-is-built-part--adding-a-blog-with-mdsvex">How this site is built, part 2: adding a blog with MDSvex</h1><!--]--><!----> <p class="meta svelte-1ewd4uj"><!--[-1--><!--]--> <time datetime="2023-05-01">1 May 2023</time></p><!----></header> <div class="prose"><!--[--><p>In <a href="/posts/something-about-this-site">part 1</a> I covered the basic SvelteKit + GitHub Pages setup. This time: how to add a Markdown-powered blog using <a href="https://mdsvex.pngwn.io/" rel="nofollow">MDSvex</a>.</p> <p>MDSvex is a preprocessor that compiles <code>.md</code> (and <code>.svelte.md</code>) files into Svelte components. That means you can use Svelte components <em>inside</em> your Markdown — handy for interactive demos, callout boxes, whatever you need.</p> <h2>Install MDSvex</h2> <pre class="language-bash"><!----><code class="language-bash"><span class="token function">npm</span> i <span class="token parameter variable">-D</span> mdsvex</code><!----></pre> <h2>Configure it</h2> <p>In <code>svelte.config.js</code>, import and apply the preprocessor. You also need to tell SvelteKit that <code>.md</code> files are valid Svelte modules:</p> <pre class="language-js"><!----><code class="language-js"><span class="token keyword">import</span> adapter <span class="token keyword">from</span> <span class="token string">'@sveltejs/adapter-static'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">&#123;</span> defineMDSveXConfig<span class="token punctuation">,</span> mdsvex <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'mdsvex'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">&#123;</span> vitePreprocess <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'@sveltejs/kit/vite'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> mdconfig <span class="token operator">=</span> <span class="token function">defineMDSveXConfig</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+  extensions<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'.svelte.md'</span><span class="token punctuation">,</span> <span class="token string">'.md'</span><span class="token punctuation">,</span> <span class="token string">'.svx'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  smartypants<span class="token operator">:</span> <span class="token boolean">true</span>  <span class="token comment">// curly quotes, em-dashes, etc.</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> config <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  extensions<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'.svelte'</span><span class="token punctuation">,</span> <span class="token operator">...</span>mdconfig<span class="token punctuation">.</span>extensions<span class="token punctuation">]</span><span class="token punctuation">,</span>
+  preprocess<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token function">vitePreprocess</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">mdsvex</span><span class="token punctuation">(</span>mdconfig<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  kit<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    adapter<span class="token operator">:</span> <span class="token function">adapter</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> config<span class="token punctuation">;</span></code><!----></pre> <p><code>smartypants: true</code> is a small but nice addition — it converts straight quotes to curly quotes and <code>--</code> to em-dashes automatically.</p> <h2>Write posts as Markdown</h2> <p>Drop <code>.md</code> files in <code>src/posts/</code>. Each file gets a frontmatter block:</p> <pre class="language-markdown"><!----><code class="language-markdown"><span class="token front-matter-block"><span class="token punctuation">---</span>
+<span class="token front-matter yaml language-yaml">title: 'My post title'
+description: 'A short summary for the index page'
+date: '2023-05-01'
+author: 'Your name'
+published: true
+tags: ['sveltekit', 'webdev']</span>
+<span class="token punctuation">---</span></span>
+
+Your content here.</code><!----></pre> <p><code>published: false</code> acts as a draft flag — unpublished posts are filtered out before they’re shown.</p> <h2>Load posts dynamically</h2> <p>SvelteKit’s <code>import.meta.glob</code> can discover all post files at build time:</p> <pre class="language-typescript"><!----><code class="language-typescript"><span class="token comment">// src/routes/+page.server.ts</span>
+<span class="token keyword">const</span> modules <span class="token operator">=</span> <span class="token keyword">import</span><span class="token punctuation">.</span>meta<span class="token punctuation">.</span><span class="token function">glob</span><span class="token punctuation">(</span><span class="token string">'/src/posts/*.&#123;md,svx,svelte.md&#125;'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code><!----></pre> <p>Each resolved module exposes <code>default</code> (the compiled Svelte component) and <code>metadata</code> (the frontmatter). From there, you filter by <code>published</code>, sort by date, and pass posts to the page.</p> <h2>Render a single post</h2> <p>For the <code>posts/[slug]</code> route, the same glob is used to find the matching file:</p> <pre class="language-typescript"><!----><code class="language-typescript"><span class="token comment">// src/routes/posts/[slug]/+page.ts</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token punctuation">[</span>path<span class="token punctuation">,</span> resolver<span class="token punctuation">]</span> <span class="token keyword">of</span> Object<span class="token punctuation">.</span><span class="token function">entries</span><span class="token punctuation">(</span>modules<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">slugFromPath</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span> <span class="token operator">===</span> params<span class="token punctuation">.</span>slug<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    match <span class="token operator">=</span> <span class="token punctuation">&#123;</span> path<span class="token punctuation">,</span> resolver <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+    <span class="token keyword">break</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code><!----></pre> <p>The <code>slugFromPath</code> helper strips the path prefix and file extension to give you a clean slug:</p> <pre class="language-typescript"><!----><code class="language-typescript"><span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">slugFromPath</span> <span class="token operator">=</span> <span class="token punctuation">(</span>path<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token operator">=></span>
+  path<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">([w-]+).(svelte.md|md|svx)</span><span class="token regex-delimiter">/</span><span class="token regex-flags">i</span></span><span class="token punctuation">)</span><span class="token operator">?.</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">??</span> <span class="token keyword">null</span><span class="token punctuation">;</span></code><!----></pre> <p>Once you have the resolved module, render it with <code>&lt;svelte:component this={post.default} /></code>.</p> <h2>Syntax highlighting</h2> <p>MDSvex bundles Prism for code blocks. To apply a theme, import a Prism CSS file in your layout:</p> <pre class="language-svelte"><!----><code class="language-svelte"><span class="token comment">&lt;!-- src/routes/+layout.svelte --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript">
+  <span class="token keyword">import</span> <span class="token string">'./prism-vsc-dark-plus.css'</span><span class="token punctuation">;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code><!----></pre> <p>You can grab any theme from <a href="https://github.com/PrismJS/prism-themes" rel="nofollow">prism-themes</a> or write your own.</p> <p>That’s the whole setup. The result is a zero-server, statically-generated blog where posts are just Markdown files in a folder — no CMS, no database.</p><!--]--></div></article><!--]--><!----></div><!----></main> <footer class="svelte-12qhfyh"><p class="svelte-12qhfyh">© 2026 Johan Nordin · Built with SvelteKit · <a href="https://github.com/johannordin" target="_blank" rel="noopener">GitHub</a></p></footer><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_1oiysuy = {
+						base: new URL("..", location).pathname.slice(0, -1)
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("../_app/immutable/entry/start.C0-XyoJ_.js"),
+						import("../_app/immutable/entry/app.BkkKEK_d.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 4],
+							data: [null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+	</body>
+</html>

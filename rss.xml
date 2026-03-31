@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>nordin.work</title>
+		<link>https://nordin.work</link>
+		<description>A developer blog by Johan Nordin covering .NET, Azure, and web development.</description>
+		<language>en</language>
+		<lastBuildDate>Tue, 31 Mar 2026 14:56:44 GMT</lastBuildDate>
+		<atom:link href="https://nordin.work/rss.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>How this site is built, part 2: adding a blog with MDSvex</title>
+			<link>https://nordin.work/posts/sveltekit-mdsvex-setup</link>
+			<guid isPermaLink="true">https://nordin.work/posts/sveltekit-mdsvex-setup</guid>
+			<description>MDSvex turns Markdown files into Svelte components. Here&apos;s how I wired it up for this blog.</description>
+			<pubDate>Mon, 01 May 2023 00:00:00 GMT</pubDate>
+			<author>Johan Nordin</author>
+		</item>
+		<item>
+			<title>Mocking API dependencies with jsonbin.io and ASP.NET Core</title>
+			<link>https://nordin.work/posts/asp-net-core-and-jsonbin</link>
+			<guid isPermaLink="true">https://nordin.work/posts/asp-net-core-and-jsonbin</guid>
+			<description>Use jsonbin.io as a lightweight JSON store to mock external API responses during development.</description>
+			<pubDate>Fri, 21 Apr 2023 00:00:00 GMT</pubDate>
+			<author>Johan Nordin</author>
+		</item>
+		<item>
+			<title>Custom domains on GitHub Pages</title>
+			<link>https://nordin.work/posts/custom-domain-gh-pages</link>
+			<guid isPermaLink="true">https://nordin.work/posts/custom-domain-gh-pages</guid>
+			<description>Buy a domain, point DNS at GitHub, add a CNAME file — you&apos;re done.</description>
+			<pubDate>Mon, 17 Apr 2023 00:00:00 GMT</pubDate>
+			<author>Johan Nordin</author>
+		</item>
+		<item>
+			<title>How this site is built, part 1: SvelteKit + GitHub Pages</title>
+			<link>https://nordin.work/posts/something-about-this-site</link>
+			<guid isPermaLink="true">https://nordin.work/posts/something-about-this-site</guid>
+			<description>A quick walkthrough of the stack — SvelteKit, adapter-static, and gh-pages deployment.</description>
+			<pubDate>Sun, 16 Apr 2023 00:00:00 GMT</pubDate>
+			<author>Johan Nordin</author>
+		</item>
+		<item>
+			<title>Welcome to my blog!</title>
+			<link>https://nordin.work/posts/welcome-to-my-blog</link>
+			<guid isPermaLink="true">https://nordin.work/posts/welcome-to-my-blog</guid>
+			<description>Finally a place to put my thoughts on webdev, Azure, and .NET.</description>
+			<pubDate>Sat, 15 Apr 2023 00:00:00 GMT</pubDate>
+			<author>Johan Nordin</author>
+		</item>
+	</channel>
+</rss>
