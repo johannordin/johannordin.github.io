@@ -1,5 +1,4 @@
 <script lang="ts">
-	import type { Component } from 'svelte';
 	import type { PageData } from './$types';
 
 	import PageHead from '$lib/components/PageHead.svelte';
@@ -7,8 +6,6 @@
 	import ArticleMeta from '$lib/components/ArticleMeta.svelte';
 
 	let { data }: { data: PageData } = $props();
-
-	const component = $derived(data.component as Component);
 </script>
 
 <PageHead
@@ -28,7 +25,10 @@
 	</header>
 
 	<div class="prose">
-		<svelte:component this={component} />
+		{#if data.component}
+			{@const PostContent = data.component}
+			<PostContent />
+		{/if}
 	</div>
 </article>
 
