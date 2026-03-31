@@ -1,0 +1,8 @@
+feat: modernize site — Svelte 5, SvelteKit 2, dark-first redesign
+
+Phase 1 — Deps: Svelte 3→5.55, SvelteKit 1→2.55, Vite 4→8, mdsvex 0.12.7
+Phase 2 — Code: full Svelte 5 runes migration across all 14 source files
+Phase 3 — Design: dark-first Linear.app aesthetic, Inter font, glass nav, card layout
+Phase 4 — Polish: page transitions, staggered cards, reduced-motion support
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>

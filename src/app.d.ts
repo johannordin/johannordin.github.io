@@ -8,7 +8,7 @@ declare namespace App {
 	// interface Platform {}
 
 	interface MdsvexFile {
-		default: import('svelte/internal').SvelteComponent;
+		default: import('svelte').Component;
 		metadata: Record<string, string>;
 	}
 
@@ -20,5 +20,9 @@ declare namespace App {
 		description: string;
 		date: string;
 		published: boolean;
+		/** Optional — not all posts include an author in frontmatter. Falls back to SITE_AUTHOR. */
+		author?: string;
+		/** Optional — comma-separated or array of topic tags. */
+		tags?: string[];
 	}
 }
