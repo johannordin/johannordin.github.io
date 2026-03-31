@@ -28,7 +28,7 @@
 	</header>
 
 	<div class="prose">
-		<component></component>
+		<svelte:component this={component} />
 	</div>
 </article>
 
