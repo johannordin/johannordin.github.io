@@ -1,5 +1,12 @@
 <script>
   import { game } from '../stores/gameStore.js';
+
+  function fmtTime(s) {
+    const m = Math.floor(s / 60);
+    return `${m}:${String(s % 60).padStart(2, '0')}`;
+  }
+
+  $: hi = $game.hiscores[$game.difficulty];
 </script>
 
 <div class="screen victory">
@@ -9,29 +16,47 @@
 
   <div class="congrats">ALL CHAPTERS CLEARED!</div>
 
-  <div class="final-score">
-    <div class="fl">FINAL SCORE</div>
-    <div class="fs">{String($game.score).padStart(8, '0')}</div>
-    {#if $game.score >= $game.highScore}
-      <div class="new-high blink">NEW HIGH SCORE!</div>
-    {:else}
-      <div class="hi">HI {String($game.highScore).padStart(8, '0')}</div>
-    {/if}
+  <div class="run-stats pixel-box-gold">
+    <div class="stat-row">
+      <span>SCORE</span>
+      <span class="val gold">{String($game.score).padStart(8, '0')}</span>
+    </div>
+    <div class="stat-row">
+      <span>LEVELS</span>
+      <span class="val">{$game.levelsCompleted}</span>
+    </div>
+    <div class="stat-row">
+      <span>TIME</span>
+      <span class="val">{fmtTime($game.runTime)}</span>
+    </div>
+    <div class="stat-row">
+      <span>DIFF</span>
+      <span class="val">{$game.difficulty.toUpperCase()}</span>
+    </div>
   </div>
 
+  {#if $game.isNewHiscore}
+    <div class="new-record blink">★ NEW RECORD! ★</div>
+  {:else if hi}
+    <div class="best-block">
+      <div class="best-label">YOUR BEST ({$game.difficulty.toUpperCase()})</div>
+      <div class="best-row">
+        <span>{String(hi.score).padStart(8, '0')}</span>
+        <span>{hi.levels} LVL</span>
+        <span>{fmtTime(hi.time)}</span>
+      </div>
+    </div>
+  {/if}
+
   <div class="btn-group">
-    <button class="btn-pixel" on:click={() => game.startGame()}>
-      PLAY AGAIN
-    </button>
-    <button class="btn-pixel danger" on:click={() => game.reset()}>
-      TITLE
-    </button>
+    <button class="btn-pixel" on:click={() => game.startGame()}>PLAY AGAIN</button>
+    <button class="btn-pixel danger" on:click={() => game.reset()}>TITLE</button>
   </div>
 </div>
 
 <style>
   .victory {
-    gap: 18px;
+    gap: 14px;
     background: radial-gradient(circle at center, #0a2a0a 0%, var(--bg) 70%);
   }
 
@@ -48,7 +73,7 @@
   }
 
   .trophy {
-    font-size: 64px;
+    font-size: 52px;
     animation: bounce 1s ease-in-out infinite;
   }
 
@@ -63,33 +88,51 @@
     letter-spacing: 2px;
   }
 
-  .final-score {
+  .run-stats {
+    width: min(300px, 90vw);
+    padding: 14px 18px;
+    background: var(--bg2);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 7px;
+    color: var(--bone-dim);
+  }
+
+  .val { color: var(--bone); font-size: 8px; }
+  .val.gold { color: var(--gold); }
+
+  .new-record {
+    font-size: 9px;
+    color: var(--gold);
+    text-shadow: 0 0 10px var(--gold);
+  }
+
+  .best-block {
     text-align: center;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 5px;
   }
 
-  .fl {
+  .best-label {
+    font-size: 5px;
+    color: var(--bone-dim);
+    letter-spacing: 2px;
+  }
+
+  .best-row {
     font-size: 7px;
     color: var(--bone-dim);
-  }
-
-  .fs {
-    font-size: clamp(16px, 6vw, 22px);
-    color: var(--gold);
-    text-shadow: 2px 2px 0 #e65100;
-  }
-
-  .new-high {
-    font-size: 8px;
-    color: var(--green);
-    text-shadow: 0 0 8px var(--green);
-  }
-
-  .hi {
-    font-size: 7px;
-    color: var(--bone-dim);
+    display: flex;
+    gap: 14px;
+    justify-content: center;
   }
 
   .btn-group {
@@ -99,3 +142,4 @@
     justify-content: center;
   }
 </style>
+
