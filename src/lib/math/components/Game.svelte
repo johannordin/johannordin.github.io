@@ -1,7 +1,7 @@
 <script>
   import { onMount, onDestroy } from 'svelte';
   import { game, currentLevel } from '../stores/gameStore.js';
-  import { generateProblem, scoreForAnswer } from '../utils/mathProblems.js';
+  import { generateProblem, generateProblemFromOps, scoreForAnswer } from '../utils/mathProblems.js';
   import HUD from './HUD.svelte';
   import Zombie from './Zombie.svelte';
   import NumPad from './NumPad.svelte';
@@ -17,6 +17,9 @@
 
   let moveInterval = null;
   let spawnTimeout = null;
+
+  let selectedOps;
+  $: selectedOps = $game.selectedOps;
 
   const DIFF_MULT = { easy: 0.6, normal: 1.0, hard: 1.5 };
   $: diffMult = DIFF_MULT[$game.difficulty] ?? 1.0;
@@ -61,7 +64,7 @@
 
   function spawnZombie() {
     if (!level) return;
-    const { display, answer } = generateProblem(level.operation, level.problemConfig);
+    const { display, answer } = generateProblemFromOps(selectedOps, level.problemConfig);
     const isBoss = level.isBoss;
     const hp = isBoss ? (level.bossHp ?? 3) : 1;
     zombies = [...zombies, {
@@ -148,7 +151,7 @@
           targetedId = alive.sort((a, b) => a.depth - b.depth)[0]?.id ?? null;
         }, 400);
       } else {
-        const { display, answer } = generateProblem(level.operation, level.problemConfig);
+        const { display, answer } = generateProblemFromOps(selectedOps, level.problemConfig);
         zombies = zombies.map(z2 =>
           z2.id === targeted.id ? { ...z2, hp: newHp, problem: display, answer } : z2
         );
@@ -183,7 +186,7 @@
     lives={$game.lives}
     score={$game.score}
     levelName={level?.levelName ?? ''}
-    chapterName={level?.chapterName ?? ''}
+    chapterName={level?.waveName ?? ''}
   />
 
   <div class="field">

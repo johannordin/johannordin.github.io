@@ -7,6 +7,23 @@
   }
 
   const diffs = ['easy', 'normal', 'hard'];
+
+  const OPS = [
+    { key: 'add', label: '+' },
+    { key: 'sub', label: '−' },
+    { key: 'mul', label: '×' },
+    { key: 'div', label: '÷' },
+  ];
+
+  function toggleOp(key) {
+    const current = $game.selectedOps;
+    if (current.includes(key)) {
+      if (current.length === 1) return; // must keep at least one
+      game.setOps(current.filter(o => o !== key));
+    } else {
+      game.setOps([...current, key]);
+    }
+  }
 </script>
 
 <div class="start-screen">
@@ -16,13 +33,20 @@
     <div class="title-line3">DEAD</div>
   </div>
 
-  <div class="zombie-art">
-    <div class="zombie-pixel"></div>
-    <div class="zombie-pixel z2"></div>
-    <div class="zombie-pixel z3"></div>
-  </div>
-
   <div class="subtitle">SURVIVE BY SOLVING MATH</div>
+
+  <div class="ops-block">
+    <div class="ops-label">OPERATIONS</div>
+    <div class="ops-btns">
+      {#each OPS as op}
+        <button
+          class="btn-pixel op-btn"
+          class:op-active={$game.selectedOps.includes(op.key)}
+          on:click={() => toggleOp(op.key)}
+        >{op.label}</button>
+      {/each}
+    </div>
+  </div>
 
   <div class="difficulty-block">
     <div class="diff-label">DIFFICULTY</div>
@@ -75,7 +99,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 14px;
     background: var(--bg);
     padding: 20px;
   }
@@ -101,44 +125,46 @@
     text-shadow: 3px 3px 0 #7f0000, 6px 6px 0 rgba(211,47,47,0.3);
   }
 
-  .zombie-art {
-    display: flex;
-    gap: 16px;
-    align-items: flex-end;
-  }
-
-  .zombie-pixel {
-    width: 24px;
-    height: 36px;
-    background: var(--green-dim);
-    position: relative;
-    image-rendering: pixelated;
-  }
-  .zombie-pixel::before {
-    content: '';
-    position: absolute;
-    top: -12px;
-    left: 4px;
-    width: 16px;
-    height: 12px;
-    background: var(--green-dim);
-  }
-  .zombie-pixel::after {
-    content: '';
-    position: absolute;
-    top: 8px;
-    left: -8px;
-    width: 8px;
-    height: 16px;
-    background: var(--green-dim);
-  }
-  .z2 { transform: scaleX(-1); opacity: 0.7; }
-  .z3 { opacity: 0.5; transform: scale(0.8); }
-
   .subtitle {
     font-size: clamp(6px, 2.5vw, 10px);
     color: var(--bone-dim);
     letter-spacing: 2px;
+  }
+
+  /* ── Operations selector ── */
+  .ops-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ops-label {
+    font-size: 7px;
+    color: var(--bone-dim);
+    letter-spacing: 3px;
+  }
+
+  .ops-btns {
+    display: flex;
+    gap: 8px;
+  }
+
+  .op-btn {
+    font-size: clamp(14px, 5vw, 18px);
+    padding: 10px 16px;
+    min-width: 52px;
+    color: var(--bone-dim);
+    background: var(--bg2);
+    border: 2px solid #444;
+    box-shadow: 3px 3px 0 #000;
+  }
+
+  .op-btn.op-active {
+    background: var(--green-dim);
+    color: var(--bone);
+    border-color: var(--green);
+    box-shadow: 3px 3px 0 var(--green-dim);
   }
 
   /* ── Difficulty selector ── */

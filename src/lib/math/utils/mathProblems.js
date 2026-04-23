@@ -47,3 +47,9 @@ export function scoreForAnswer(answer, levelIndex) {
   const levelBonus = (levelIndex + 1) * 5;
   return Math.max(10, Math.floor(base * 0.5) + levelBonus);
 }
+
+/** Pick a random operation from the player's selected set and generate a problem */
+export function generateProblemFromOps(selectedOps, config) {
+  const op = selectedOps[Math.floor(Math.random() * selectedOps.length)];
+  return generateProblem(op, config);
+}

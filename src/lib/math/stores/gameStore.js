@@ -16,6 +16,14 @@ function loadHiscores() {
   } catch { return {}; }
 }
 
+function loadSelectedOps() {
+  try {
+    const stored = JSON.parse(localStorage.getItem('motd_ops') || 'null');
+    if (Array.isArray(stored) && stored.length > 0) return stored;
+  } catch {}
+  return ['add'];
+}
+
 function isBetter(next, prev) {
   if (!prev) return true;
   if (next.score !== prev.score) return next.score > prev.score;
@@ -31,6 +39,7 @@ function createGameStore() {
     levelIndex: 0,
     levelsCompleted: 0,
     difficulty: 'normal',
+    selectedOps: loadSelectedOps(),
     startTime: null,
     runTime: 0,
     isNewHiscore: false,
@@ -57,6 +66,7 @@ function createGameStore() {
         ...initial,
         screen: SCREENS.GAME,
         difficulty: s.difficulty,
+        selectedOps: s.selectedOps,
         hiscores: loadHiscores(),
         startTime: Date.now(),
       }));
@@ -92,6 +102,12 @@ function createGameStore() {
 
     setDifficulty(d) {
       update(s => ({ ...s, difficulty: d }));
+    },
+
+    setOps(ops) {
+      if (ops.length === 0) return;
+      localStorage.setItem('motd_ops', JSON.stringify(ops));
+      update(s => ({ ...s, selectedOps: ops }));
     },
 
     levelComplete() {
