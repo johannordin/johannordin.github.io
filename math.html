@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="./favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="a developer blog of johan nordin covering dotnet .net azure" />
+		<link rel="alternate" type="application/rss+xml" title="nordin.work RSS Feed" href="/rss.xml" />
+		<script>
+			// Apply stored theme before first paint to avoid flash
+			(function() {
+				var stored = localStorage.getItem('color-scheme');
+				if (stored === 'light') document.documentElement.classList.add('light');
+				// dark is default — no class needed
+			})();
+		</script>
+		<link href="./_app/immutable/entry/start.DqXR-7sv.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/CNX5qG06.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/y_5NYVN6.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/DDRwIACS.js" rel="modulepreload">
+		<link href="./_app/immutable/entry/app.DUz72yUj.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/Di6zslmw.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/CsaauQz1.js" rel="modulepreload">
+		
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">
+			<script>
+				{
+					__sveltekit_p2eakc = {
+						base: new URL(".", location).pathname.slice(0, -1)
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("./_app/immutable/entry/start.DqXR-7sv.js"),
+						import("./_app/immutable/entry/app.DUz72yUj.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element);
+					});
+				}
+			</script>
+		</div>
+	</body>
+</html>

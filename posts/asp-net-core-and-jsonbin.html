@@ -14,23 +14,25 @@
 				// dark is default — no class needed
 			})();
 		</script>
-		<link href="../_app/immutable/entry/start.C0-XyoJ_.js" rel="modulepreload">
-		<link href="../_app/immutable/chunks/CCjTlTcz.js" rel="modulepreload">
-		<link href="../_app/immutable/chunks/BE_AR5iD.js" rel="modulepreload">
-		<link href="../_app/immutable/entry/app.BkkKEK_d.js" rel="modulepreload">
-		<link href="../_app/immutable/chunks/CHncfsjL.js" rel="modulepreload">
-		<link href="../_app/immutable/chunks/D1hYfEew.js" rel="modulepreload">
-		<link href="../_app/immutable/nodes/0.CBxAE9u-.js" rel="modulepreload">
-		<link href="../_app/immutable/chunks/mpl0SzhF.js" rel="modulepreload">
-		<link href="../_app/immutable/nodes/4.Bb1XD1HQ.js" rel="modulepreload">
-		<link href="../_app/immutable/chunks/D5W0HYR7.js" rel="modulepreload">
+		<link href="../_app/immutable/entry/start.DqXR-7sv.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/CNX5qG06.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/y_5NYVN6.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/DDRwIACS.js" rel="modulepreload">
+		<link href="../_app/immutable/entry/app.DUz72yUj.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/Di6zslmw.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/CsaauQz1.js" rel="modulepreload">
+		<link href="../_app/immutable/nodes/0.D4nRT3ha.js" rel="modulepreload">
+		<link href="../_app/immutable/nodes/2.CqnmEI8O.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/Cd5hjAN_.js" rel="modulepreload">
+		<link href="../_app/immutable/nodes/7.DvDAuBzZ.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/RwPPt-6u.js" rel="modulepreload">
 		<!--38sjwj--><meta name="description" content="Use jsonbin.io as a lightweight JSON store to mock external API responses during development."/> <!--[0--><meta name="author" content="Johan Nordin"/><!--]--> <link rel="canonical" href="https://nordin.work/posts/asp-net-core-and-jsonbin"/> <meta property="og:site_name" content="nordin.work"/> <meta property="og:type" content="article"/> <meta property="og:url" content="https://nordin.work/posts/asp-net-core-and-jsonbin"/> <meta property="og:title" content="Mocking API dependencies with jsonbin.io and ASP.NET Core | nordin.work"/> <meta property="og:description" content="Use jsonbin.io as a lightweight JSON store to mock external API responses during development."/> <meta property="og:image" content="https://nordin.work/favicon.png"/> <!--[0--><meta property="article:published_time" content="2023-04-21"/><!--]--> <!--[0--><meta property="article:author" content="Johan Nordin"/><!--]--> <meta name="twitter:card" content="summary"/> <meta name="twitter:title" content="Mocking API dependencies with jsonbin.io and ASP.NET Core | nordin.work"/> <meta name="twitter:description" content="Use jsonbin.io as a lightweight JSON store to mock external API responses during development."/> <meta name="twitter:image" content="https://nordin.work/favicon.png"/><!----><title>Mocking API dependencies with jsonbin.io and ASP.NET Core | nordin.work</title>
-		<link href="../_app/immutable/assets/0.CxvuDu-h.css" rel="stylesheet">
+		<link href="../_app/immutable/assets/2.CUSqxHRb.css" rel="stylesheet">
 		<link href="../_app/immutable/assets/ArticleMeta.4lmyK-8_.css" rel="stylesheet">
-		<link href="../_app/immutable/assets/4.DYo7P96q.css" rel="stylesheet">
+		<link href="../_app/immutable/assets/7.2w1uxxNW.css" rel="stylesheet">
 	</head>
 	<body data-sveltekit-preload-data="hover">
-		<div style="display: contents"><!--[--><!--[0--><!--[--><header class="svelte-12qhfyh"><nav class="svelte-12qhfyh"><a class="site-name svelte-12qhfyh" href="/">nordin.work</a> <div class="nav-links svelte-12qhfyh"><a href="/" class="svelte-12qhfyh active">Blog</a> <a href="/about" class="svelte-12qhfyh">About</a> <button aria-label="Switch to light mode" title="Switch to light mode" class="svelte-woggik"><!--[-1--><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg><!--]--></button><!----></div></nav></header> <main><!----><div class="page-transition svelte-12qhfyh"><!--[--><!----> <a class="back-link svelte-14u6r3i" href="/">← All posts</a> <article><header class="post-header svelte-14u6r3i"><!--[-1--><h1 class="post-title svelte-zkkrg4" id="mocking-api-dependencies-with-jsonbinio-and-aspnet-core">Mocking API dependencies with jsonbin.io and ASP.NET Core</h1><!--]--><!----> <p class="meta svelte-1ewd4uj"><!--[-1--><!--]--> <time datetime="2023-04-21">21 April 2023</time></p><!----></header> <div class="prose"><!--[--><p>When building against external APIs during development, you often hit rate limits, flaky responses, or simply don’t want real side effects while testing. I’ve started reaching for <a href="https://jsonbin.io" rel="nofollow">jsonbin.io</a> as a dead-simple JSON mock store.</p> <h2>Why jsonbin?</h2> <ul><li>Free tier is generous for dev/test usage</li> <li>Each “bin” is just a JSON document accessible via REST</li> <li>You can validate bins against a JSON schema</li> <li>No infra to maintain</li></ul> <h2>Workflow</h2> <p><strong>1. Generate example data with ChatGPT</strong></p> <p>Give it your JSON schema and ask for a realistic example document. Paste the result as your bin content.</p> <p><strong>2. Create a bin</strong></p> <pre class="language-bash"><!----><code class="language-bash"><span class="token function">curl</span> <span class="token parameter variable">-v</span> <span class="token punctuation"></span>
+		<div style="display: contents"><!--[--><!--[0--><!--[--><!--[0--><!--[--><header class="svelte-1br2sqw"><nav class="svelte-1br2sqw"><a class="site-name svelte-1br2sqw" href="/">nordin.work</a> <div class="nav-links svelte-1br2sqw"><a href="/" class="svelte-1br2sqw active">Blog</a> <a href="/about" class="svelte-1br2sqw">About</a> <a href="/math" class="nav-game svelte-1br2sqw">🧟 Math</a> <button aria-label="Switch to light mode" title="Switch to light mode" class="svelte-woggik"><!--[-1--><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg><!--]--></button><!----></div></nav></header> <main><!----><div class="page-transition svelte-1br2sqw"><!--[--><!----> <a class="back-link svelte-4297id" href="/">← All posts</a> <article><header class="post-header svelte-4297id"><!--[-1--><h1 class="post-title svelte-zkkrg4" id="mocking-api-dependencies-with-jsonbinio-and-aspnet-core">Mocking API dependencies with jsonbin.io and ASP.NET Core</h1><!--]--><!----> <p class="meta svelte-1ewd4uj"><!--[-1--><!--]--> <time datetime="2023-04-21">21 April 2023</time></p><!----></header> <div class="prose"><!--[0--><!--[--><p>When building against external APIs during development, you often hit rate limits, flaky responses, or simply don’t want real side effects while testing. I’ve started reaching for <a href="https://jsonbin.io" rel="nofollow">jsonbin.io</a> as a dead-simple JSON mock store.</p> <h2>Why jsonbin?</h2> <ul><li>Free tier is generous for dev/test usage</li> <li>Each “bin” is just a JSON document accessible via REST</li> <li>You can validate bins against a JSON schema</li> <li>No infra to maintain</li></ul> <h2>Workflow</h2> <p><strong>1. Generate example data with ChatGPT</strong></p> <p>Give it your JSON schema and ask for a realistic example document. Paste the result as your bin content.</p> <p><strong>2. Create a bin</strong></p> <pre class="language-bash"><!----><code class="language-bash"><span class="token function">curl</span> <span class="token parameter variable">-v</span> <span class="token punctuation"></span>
   <span class="token parameter variable">-H</span> <span class="token string">"Content-Type: application/json"</span> <span class="token punctuation"></span>
   <span class="token parameter variable">-H</span> <span class="token string">"X-Master-Key: &lt;YOUR_API_KEY>"</span> <span class="token punctuation"></span>
   <span class="token parameter variable">--request</span> POST <span class="token punctuation"></span>
@@ -39,23 +41,23 @@
 <span class="token punctuation">&#123;</span>
     options<span class="token punctuation">.</span>BaseAddress <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Uri</span><span class="token punctuation">(</span><span class="token string">"https://api.jsonbin.io/"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     options<span class="token punctuation">.</span>DefaultRequestHeaders<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token string">"X-Bin-Meta"</span><span class="token punctuation">,</span> <span class="token keyword">new</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">&#123;</span> <span class="token string">"false"</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code><!----></pre> <p>The <code>X-Bin-Meta: false</code> header strips jsonbin’s metadata wrapper so you get your raw JSON back.</p> <p><strong>4. Swap base addresses per environment</strong></p> <p>In <code>appsettings.Development.json</code>, point the base address at jsonbin. In <code>appsettings.Production.json</code>, point it at the real API. Your <code>IMyHttpClient</code> code doesn’t change — just the config.</p> <blockquote><p>Keep your <code>X-Master-Key</code> in user secrets or environment variables, not in source code. <code>dotnet user-secrets set "JsonBin:ApiKey" "your-key"</code> is the right move.</p></blockquote><!--]--></div></article><!--]--><!----></div><!----></main> <footer class="svelte-12qhfyh"><p class="svelte-12qhfyh">© 2026 Johan Nordin · Built with SvelteKit · <a href="https://github.com/johannordin" target="_blank" rel="noopener">GitHub</a></p></footer><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code><!----></pre> <p>The <code>X-Bin-Meta: false</code> header strips jsonbin’s metadata wrapper so you get your raw JSON back.</p> <p><strong>4. Swap base addresses per environment</strong></p> <p>In <code>appsettings.Development.json</code>, point the base address at jsonbin. In <code>appsettings.Production.json</code>, point it at the real API. Your <code>IMyHttpClient</code> code doesn’t change — just the config.</p> <blockquote><p>Keep your <code>X-Master-Key</code> in user secrets or environment variables, not in source code. <code>dotnet user-secrets set "JsonBin:ApiKey" "your-key"</code> is the right move.</p></blockquote><!--]--><!--]--></div></article><!--]--><!----></div><!----></main> <footer class="svelte-1br2sqw"><p class="svelte-1br2sqw">© 2026 Johan Nordin · Built with SvelteKit · <a href="https://github.com/johannordin" target="_blank" rel="noopener">GitHub</a></p></footer><!--]--><!--]--><!----><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
 			
 			<script>
 				{
-					__sveltekit_1oiysuy = {
+					__sveltekit_p2eakc = {
 						base: new URL("..", location).pathname.slice(0, -1)
 					};
 
 					const element = document.currentScript.parentElement;
 
 					Promise.all([
-						import("../_app/immutable/entry/start.C0-XyoJ_.js"),
-						import("../_app/immutable/entry/app.BkkKEK_d.js")
+						import("../_app/immutable/entry/start.DqXR-7sv.js"),
+						import("../_app/immutable/entry/app.DUz72yUj.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
-							node_ids: [0, 4],
-							data: [null,null],
+							node_ids: [0, 2, 7],
+							data: [null,null,null],
 							form: null,
 							error: null
 						});
