@@ -192,12 +192,6 @@
     <!-- Horizon -->
     <div class="horizon"></div>
 
-    <!-- Player character at bottom-left -->
-    <div class="player">
-      <div class="player-head"></div>
-      <div class="player-body"></div>
-    </div>
-
     {#each zombies as z (z.id)}
       <Zombie
         id={z.id}
@@ -251,7 +245,7 @@
     position: relative;
     overflow: hidden;
     background: linear-gradient(180deg, #03090a 0%, #071a0b 35%, #0d1b0a 65%, #1a2810 100%);
-    min-height: 160px;
+    min-height: 240px;
   }
 
   /* Perspective road trapezoid */
@@ -288,31 +282,6 @@
     right: 0;
     height: 1px;
     background: rgba(76, 175, 80, 0.18);
-  }
-
-  /* ── Player (pixel art, bottom-left) ── */
-  .player {
-    position: absolute;
-    bottom: 4px;
-    left: 12px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    z-index: 200;
-  }
-
-  .player-head {
-    width: 16px;
-    height: 14px;
-    background: #f9a825;
-    border: 2px solid #e65100;
-  }
-
-  .player-body {
-    width: 18px;
-    height: 22px;
-    background: #1565c0;
-    border: 2px solid #0d47a1;
   }
 
   /* ── Answer area ── */

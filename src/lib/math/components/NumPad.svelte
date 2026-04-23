@@ -61,7 +61,7 @@
   .numpad {
     background: var(--bg2);
     border-top: 3px solid var(--green-dim);
-    padding: 10px 12px 12px;
+    padding: 6px 12px 10px;
     flex-shrink: 0;
   }
 
@@ -69,10 +69,10 @@
     font-size: clamp(16px, 6vw, 24px);
     color: var(--bone-dim);
     text-align: center;
-    padding: 8px;
-    margin-bottom: 10px;
+    padding: 4px;
+    margin-bottom: 6px;
     border-bottom: 2px solid var(--green-dim);
-    min-height: 44px;
+    min-height: 36px;
     letter-spacing: 4px;
     transition: color 0.1s;
   }
@@ -93,7 +93,7 @@
     font-family: var(--pixel-font);
     font-size: clamp(14px, 5vw, 18px);
     padding: 0;
-    height: clamp(52px, 13vw, 66px);
+    height: clamp(46px, 11vw, 58px);
     background: var(--bg);
     color: var(--bone);
     border: 2px solid var(--green-dim);
