@@ -14,18 +14,18 @@
 				// dark is default — no class needed
 			})();
 		</script>
-		<link href="../_app/immutable/entry/start.DA224Qfw.js" rel="modulepreload">
-		<link href="../_app/immutable/chunks/CCuuehWo.js" rel="modulepreload">
+		<link href="../_app/immutable/entry/start.SmD8m2bf.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/B-DGKLq3.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/DjmjX4uB.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/Cwlr2dCJ.js" rel="modulepreload">
-		<link href="../_app/immutable/entry/app.CMA7qfZA.js" rel="modulepreload">
+		<link href="../_app/immutable/entry/app.C7YNEblG.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/Di6zslmw.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/CsaauQz1.js" rel="modulepreload">
 		<link href="../_app/immutable/nodes/0.Cy7SP0vj.js" rel="modulepreload">
-		<link href="../_app/immutable/nodes/2.DqWtrNOW.js" rel="modulepreload">
-		<link href="../_app/immutable/chunks/DaJOkGNf.js" rel="modulepreload">
-		<link href="../_app/immutable/nodes/7.JaLSDyy6.js" rel="modulepreload">
-		<link href="../_app/immutable/chunks/DfArB9hx.js" rel="modulepreload">
+		<link href="../_app/immutable/nodes/2.AaiQU04D.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/CuJ3loMN.js" rel="modulepreload">
+		<link href="../_app/immutable/nodes/7.CZoZw1Nf.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/C4DD5Xqw.js" rel="modulepreload">
 		<!--38sjwj--><meta name="description" content="A quick walkthrough of the stack — SvelteKit, adapter-static, and gh-pages deployment."/> <!--[0--><meta name="author" content="Johan Nordin"/><!--]--> <link rel="canonical" href="https://nordin.work/posts/something-about-this-site"/> <meta property="og:site_name" content="nordin.work"/> <meta property="og:type" content="article"/> <meta property="og:url" content="https://nordin.work/posts/something-about-this-site"/> <meta property="og:title" content="How this site is built, part 1: SvelteKit + GitHub Pages | nordin.work"/> <meta property="og:description" content="A quick walkthrough of the stack — SvelteKit, adapter-static, and gh-pages deployment."/> <meta property="og:image" content="https://nordin.work/favicon.png"/> <!--[0--><meta property="article:published_time" content="2023-04-16"/><!--]--> <!--[0--><meta property="article:author" content="Johan Nordin"/><!--]--> <meta name="twitter:card" content="summary"/> <meta name="twitter:title" content="How this site is built, part 1: SvelteKit + GitHub Pages | nordin.work"/> <meta name="twitter:description" content="A quick walkthrough of the stack — SvelteKit, adapter-static, and gh-pages deployment."/> <meta name="twitter:image" content="https://nordin.work/favicon.png"/><!----><title>How this site is built, part 1: SvelteKit + GitHub Pages | nordin.work</title>
 		<link href="../_app/immutable/assets/2.CUSqxHRb.css" rel="stylesheet">
 		<link href="../_app/immutable/assets/ArticleMeta.4lmyK-8_.css" rel="stylesheet">
@@ -38,8 +38,8 @@
 <span class="token function">npm</span> run dev</code><!----></pre> <p>That gets you a working dev server. But the default <code>adapter-auto</code> won’t work for static hosting — you need <code>adapter-static</code>.</p> <h2>2. Switch to adapter-static</h2> <pre class="language-bash"><!----><code class="language-bash"><span class="token function">npm</span> i <span class="token parameter variable">-D</span> @sveltejs/adapter-static</code><!----></pre> <p>Then update <code>svelte.config.js</code>:</p> <pre class="language-js"><!----><code class="language-js"><span class="token keyword">import</span> adapter <span class="token keyword">from</span> <span class="token string">'@sveltejs/adapter-static'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">const</span> config <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
-  <span class="token literal-property property">kit</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-    <span class="token literal-property property">adapter</span><span class="token operator">:</span> <span class="token function">adapter</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  kit<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    adapter<span class="token operator">:</span> <span class="token function">adapter</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
   <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
 
@@ -47,15 +47,15 @@
 			
 			<script>
 				{
-					__sveltekit_1cve7en = {
+					__sveltekit_sqk6bj = {
 						base: new URL("..", location).pathname.slice(0, -1)
 					};
 
 					const element = document.currentScript.parentElement;
 
 					Promise.all([
-						import("../_app/immutable/entry/start.DA224Qfw.js"),
-						import("../_app/immutable/entry/app.CMA7qfZA.js")
+						import("../_app/immutable/entry/start.SmD8m2bf.js"),
+						import("../_app/immutable/entry/app.C7YNEblG.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 2, 7],
